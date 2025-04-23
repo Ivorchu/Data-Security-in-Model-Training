@@ -67,12 +67,12 @@ X_train_reshaped = X_train.reshape(X_train.shape[0], -1)
 #Now we can fit the model
 model_1.fit(X_train_reshaped, y_train)
 #Part 3 Calculate model1_results using model_1.predict()
-model1_results = model_1.predict('''What should go in here? Hint, look at documentation and some reshaping may need to be done''')
+model1_results = model_1.predict(X_test.reshape(X_test.shape[0], -1))
 
 
 def OverallAccuracy(results, actual_values):
   #Calculate the overall accuracy of the model (out of the predicted labels, how many were correct?)
-  
+  Accuracy = np.mean(results == actual_values)
   return Accuracy
 
 
@@ -83,7 +83,7 @@ print("The overall results of the Gaussian model is " + str(Model1_Overall_Accur
 
 #Part 5
 allnumbers = [0,1,2,3,4,5,6,7,8,9]
-allnumbers_images, allnumbers_labels = dataset_searcher(allnumbers)
+allnumbers_images, allnumbers_labels = dataset_searcher(allnumbers, images, labels)
 
 
 
