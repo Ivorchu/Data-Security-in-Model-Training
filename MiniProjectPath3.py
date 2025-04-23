@@ -176,9 +176,9 @@ model3_poison = MLPClassifier(random_state=0, max_iter=500).fit(X_train_poison_r
 print("Model 3 poison trained...")
 
 # MLP result for test set
-model2_poison_result_testset = model2_poison.predict(X_test_reshape)
-model2_poison_accuracy_testset = OverallAccuracy(model2_poison_result_testset, y_test)
-print("The overall results of the MLP model poison is " + str(model2_poison_accuracy_testset))
+model3_poison_result_testset = model3_poison.predict(X_test_reshape)
+model3_poison_accuracy_testset = OverallAccuracy(model3_poison_result_testset, y_test)
+print("The overall results of the MLP model poison is " + str(model3_poison_accuracy_testset))
 
 # MLP result for numbers
 model3_poison_result_allnumber = model3_poison.predict(allnumbers_images_reshape)
@@ -189,7 +189,7 @@ print("The overall results of the MLP model poison with the numbers [0, 1, 2, 3,
 # Part 10, 11...
 
 print("Samples of poisoned training sets:")
-print_numbers(X_train_poison[:20], y_train[:20])
+# print_numbers(X_train_poison[:20], y_train[:20])
 
 
 #Part 12-13
@@ -210,7 +210,7 @@ kpca = KernelPCA(
 X_train_kpca = kpca.fit_transform(X_train_poison_reshape)
 X_train_denoised = kpca.inverse_transform(X_train_kpca)
 print("Some denoised training samples:")
-print_numbers(X_train_denoised.reshape(-1, 8, 8)[:20], y_train[:20]) # ???
+# print_numbers(X_train_denoised.reshape(-1, 8, 8)[:20], y_train[:20]) # ???
 
 
 #Part 14-15
@@ -229,7 +229,7 @@ print("The overall results of the Gaussian model denoised is " + str(model1_deno
 # GaussianNB result for numbers
 model1_denoised_result_allnumber = model1_denoised.predict(allnumbers_images_reshape)
 model1_denoised_accuracy_allnumber = OverallAccuracy(model1_denoised_result_allnumber, allnumbers_labels)
-#print_numbers(allnumbers_images, model1_denoised_result_allnumber)
+# print_numbers(allnumbers_images, model1_denoised_result_allnumber)
 print("The overall results of the Gaussian model denoised with the numbers [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] is " + str(model1_denoised_accuracy_allnumber))
 
 # KNN
@@ -251,6 +251,6 @@ model3_denoised_accuracy_testset = OverallAccuracy(model3_denoised_result_testse
 print("The overall results of the MLP model denoised is " + str(model3_denoised_accuracy_testset))
 model3_denoised_result_allnumber = model3_denoised.predict(allnumbers_images_reshape)
 model3_denoised_accuracy_allnumber = OverallAccuracy(model3_denoised_result_allnumber, allnumbers_labels)
-print_numbers(allnumbers_images, model3_denoised_result_allnumber)
+# print_numbers(allnumbers_images, model3_denoised_result_allnumber)
 print("The overall results of the MLP model denoised with the numbers [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] is " + str(model3_denoised_accuracy_allnumber))
 
