@@ -24,17 +24,35 @@ def dataset_searcher(number_list,images,labels):
   #insert code that when given a list of integers, will find the labels and images
   #and put them all in numpy arrary (at the same time, as training and testing data)
 
-  pass
-  #return images_nparray, labels_nparray
+  image_array = []
+  label_array = []
+  for i, label in enumerate(labels):
+    if label in number_list:
+      image_array.append(images[i])
+      label_array.append(label)
+  images_nparray = np.array(image_array)
+  labels_nparray = np.array(label_array)
+
+  return images_nparray, labels_nparray
 
 def print_numbers(images,labels):
   #insert code that when given images and labels (of numpy arrays)
   #the code will plot the images and their labels in the title. 
-  pass
+  n = len(images)
+  cols = 100
+  rows = int(np.ceil(n / cols))
+  plt.figure(figsize=(cols * 2, rows * 2))
+  for i, image in enumerate(images):
+      axes = plt.subplot(rows, cols, i + 1)
+      axes.imshow(image, cmap='gray')
+      axes.set_title(str(labels[i]))
+      axes.axis('off')
+  plt.tight_layout()
+  plt.show()
 
 class_numbers = [2,0,8,7,5]
 #Part 1
-class_number_images , class_number_labels = dataset_searcher(class_numbers)
+class_number_images , class_number_labels = dataset_searcher(class_numbers, images, labels)
 #Part 2
 print_numbers(class_number_images , class_number_labels )
 
@@ -99,7 +117,7 @@ X_train_poison = X_train + poison
 # When fitting the KernelPCA method, the input image of size 8x8 should be reshaped into 1 dimension
 # So instead of using the X_train_poison data of shape 718 (718 images) by 8 by 8, the new shape would be 718 by 64
 
-X_train_denoised = # fill in the code here
+#X_train_denoised = # fill in the code here
 
 
 #Part 14-15
