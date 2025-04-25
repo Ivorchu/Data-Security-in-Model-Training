@@ -200,7 +200,7 @@ print("Samples of poisoned training sets:")
 
 # Denoise...
 kpca = KernelPCA(
-  n_components=64,
+  n_components=None,
   kernel='rbf',
   gamma=0.001,
   fit_inverse_transform=True,
