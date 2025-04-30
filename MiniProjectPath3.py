@@ -41,7 +41,7 @@ def print_numbers(images,labels):
   #insert code that when given images and labels (of numpy arrays)
   #the code will plot the images and their labels in the title. 
   n = len(images)
-  cols = 80
+  cols = 50
   rows = int(np.ceil(n / cols))
   plt.figure(figsize=(cols * 2, rows * 2))
   for i, image in enumerate(images):
@@ -51,12 +51,26 @@ def print_numbers(images,labels):
       axes.axis('off')
   plt.tight_layout()
   plt.show()
+'''
+def print_numbers(images, labels):
+    n = min(len(images), 15)  # display at most 15 images
+    cols = 5
+    rows = 3
+    plt.figure(figsize=(cols * 2, rows * 2))
+    for i, image in enumerate(images[:n]):
+        axes = plt.subplot(rows, cols, i + 1)
+        axes.imshow(image, cmap='gray')
+        axes.set_title(str(labels[i]))
+        axes.axis('off')
+    plt.tight_layout()
+    plt.show()
+'''
 
 class_numbers = [2,0,8,7,5]
 #Part 1
 class_number_images , class_number_labels = dataset_searcher(class_numbers, images, labels)
 #Part 2
-# print_numbers(class_number_images , class_number_labels)
+print_numbers(class_number_images , class_number_labels)
 
 
 model_1 = GaussianNB()
